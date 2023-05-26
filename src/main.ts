@@ -43,19 +43,21 @@ window.addEventListener("mousemove", (e) => {
 	mouse.y = -(e.clientY / getHeight()) * 2 + 1;
 });
 
+const raycaster = new THREE.Raycaster();
+
 const gridHelper = new THREE.GridHelper(10, 10);
 scene.add(gridHelper);
 
 const obj = new PhysicsGrid(world, scene);
 const cursor = new Cursor(world, scene);
-obj.bodiesArr.push(cursor.sphereBody);
-obj.meshArr.push(cursor.sphereMesh);
+// obj.bodiesArr.push(cursor.sphereBody);
+// obj.meshArr.push(cursor.sphereMesh);
 
 const animate = () => {
 	requestAnimationFrame(animate);
 	world.step(1 / 60);
 	obj.update();
-	cursor.update(mouse);
+	cursor.update(mouse, camera, raycaster);
 	controls.update();
 	renderer.render(scene, camera);
 };
