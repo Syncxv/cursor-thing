@@ -46,6 +46,7 @@ window.addEventListener("mousemove", (e) => {
 const raycaster = new THREE.Raycaster();
 
 const gridHelper = new THREE.GridHelper(10, 10);
+gridHelper.position.y = -1;
 scene.add(gridHelper);
 
 const obj = new PhysicsGrid(world, scene);
